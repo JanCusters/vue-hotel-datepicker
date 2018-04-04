@@ -95,6 +95,13 @@
       </div>
 
       <div class="box">
+        <h3>Allow setting a min date for checkout</h3>
+        <DatePicker
+          :checkoutMinDate="'2018-04-09'"
+          />
+      </div>
+
+      <div class="box">
         <h3>Custom tooltip text</h3>
         <DatePicker
           tooltipMessage="<strong style='color: red'>Enjoy</strong> your stay!"

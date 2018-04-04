@@ -108,7 +108,7 @@ import Helpers from './helpers.js';
 const defaulti18n = {
   night: 'Night',
   nights: 'Nights',
-  'day-names': ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'],
+  'day-names': ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'],
   'check-in': 'Check-in',
   'check-out': 'Check-out',
   'month-names': ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
@@ -168,6 +168,10 @@ export default {
     allowedRanges: {
       default: function(){ return [] },
       type: Array
+    },
+    checkoutMinDate: {
+      default: null,
+      type: Date 
     },
     hoveringTooltip: {
       default: true,
@@ -376,7 +380,7 @@ export default {
     formatDate(date) { return fecha.format(date, this.format) },
 
     createMonth(date){
-      const firstSunday = this.getFirstSunday(date);
+      const firstMonday = this.getFirstMonday(date);
 
       let month = {
         days: []
@@ -384,8 +388,8 @@ export default {
 
       for (let i = 0; i < 42; i++) {
         month.days.push({
-          date: this.addDays(firstSunday, i),
-          belongsToThisMonth: this.addDays(firstSunday, i).getMonth() === date.getMonth(),
+          date: this.addDays(firstMonday, i),
+          belongsToThisMonth: this.addDays(firstMonday, i).getMonth() === date.getMonth(),
           isInRange: false,
         });
       }
@@ -460,16 +464,16 @@ $extra-small-screen: '(max-width: 23em)';
 /* =============================================================
  * VARIABLES
  * ============================================================*/
-$white: #fff;
+$white:                #fff;
 $black:                #000;
-$gray:                 #424b53;
-$primary-text-color:   #35343d;
-$lightest-gray:        #f3f5f8;
-$primary-color: #00ca9d;
-$primary-color: $primary-color;
-$medium-gray: #999999;
-$light-gray: #d7d9e2;
-$dark-gray: #2d3047;
+$gray:                 #48626F;
+$primary-text-color:   $gray;
+$lightest-gray:        #FAFAFA;
+$primary-color:        #F2644A;
+$primary-color:        $primary-color;
+$medium-gray:          hsl(0, 0%, 21%);
+$light-gray:           #8296A0;
+$dark-gray:            hsl(0, 0%, 29%);
 
 $font-small: 14px;
 

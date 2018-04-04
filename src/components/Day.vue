@@ -120,6 +120,28 @@ export default {
             }
           }
         }
+
+        // If the calendar has a min date for checkout
+        if (this.options.checkoutMinDate !== null) {
+          if ( !this.isDisabled && this.checkIn !== null && this.checkOut == null ) {
+            // If the day is after the allowed check out day and is not highlighted
+            if ( this.compareDay(this.date, this.options.checkoutMinDate) != -1 && !this.isHighlighted ) {
+              return 'datepicker__month-day--allowed-checkout'
+            }
+            // If the day is after the allowed check out day and is highlighted
+            if ( this.compareDay(this.date, this.options.checkoutMinDate) != -1 && this.isHighlighted ) {
+              return 'datepicker__month-day--selected datepicker__month-day--allowed-checkout'
+            }
+            // If the day is before the allowed check out day and is highlighted
+            if ( this.compareDay(this.date, this.options.checkoutMinDate) == -1 && this.isHighlighted ) {
+              return 'datepicker__month-day--out-of-range datepicker__month-day--selected'
+            }
+            else {
+              return 'datepicker__month-day datepicker__month-day--out-of-range'
+            }
+          }
+        }
+
         // Highlight the selected dates and prevent the user from selecting
         // the same date for checkout and checkin
         if ( this.checkIn !== null &&
