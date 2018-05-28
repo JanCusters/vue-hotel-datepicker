@@ -108,7 +108,7 @@ import Helpers from './helpers.js';
 const defaulti18n = {
   night: 'Night',
   nights: 'Nights',
-  'day-names': ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'],
+  'day-names': ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'],
   'check-in': 'Check-in',
   'check-out': 'Check-out',
   'month-names': ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
@@ -384,7 +384,7 @@ export default {
     formatDate(date) { return fecha.format(date, this.format) },
 
     createMonth(date){
-      const firstSunday = this.getFirstSunday(date);
+      const firstMonday = this.getFirstMonday(date);
 
       let month = {
         days: []
@@ -392,8 +392,8 @@ export default {
 
       for (let i = 0; i < 42; i++) {
         month.days.push({
-          date: this.addDays(firstSunday, i),
-          belongsToThisMonth: this.addDays(firstSunday, i).getMonth() === date.getMonth(),
+          date: this.addDays(firstMonday, i),
+          belongsToThisMonth: this.addDays(firstMonday, i).getMonth() === date.getMonth(),
           isInRange: false,
         });
       }
