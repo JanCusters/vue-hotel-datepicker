@@ -108,6 +108,13 @@
           />
       </div>
 
+       <div class="box">
+        <h3>Show year</h3>
+        <DatePicker
+          :showYear="true"
+          />
+      </div>
+
     </div>
   </div>
 </template>

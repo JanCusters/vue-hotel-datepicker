@@ -108,7 +108,7 @@ import Helpers from './helpers.js';
 const defaulti18n = {
   night: 'Night',
   nights: 'Nights',
-  'day-names': ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'],
+  'day-names': ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'],
   'check-in': 'Check-in',
   'check-out': 'Check-out',
   'month-names': ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
@@ -133,7 +133,7 @@ export default {
     },
     endingDateValue: {
       default: null,
-      type: Date 
+      type: Date
     },
     format: {
       default: 'YYYY-MM-DD',
@@ -190,6 +190,10 @@ export default {
       type: Boolean
     },
     singleDaySelection: {
+      default: false,
+      type: Boolean
+    },
+    showYear: {
       default: false,
       type: Boolean
     }
@@ -375,7 +379,7 @@ export default {
 
     getDay(date) { return fecha.format(date, 'D') },
 
-    getMonth(date) { return this.i18n["month-names"][fecha.format(date, 'M') - 1] },
+    getMonth(date) { return this.i18n["month-names"][fecha.format(date, 'M') - 1] + (this.showYear ? fecha.format(date, ' YYYY') : ''); },
 
     formatDate(date) { return fecha.format(date, this.format) },
 
@@ -749,7 +753,7 @@ $font-small: 14px;
       }
     }
 
-    @include device($tablet-up) {
+    @include device($desktop) {
       &:last-of-type {
         padding-right: 0;
         padding-left: 10px;
