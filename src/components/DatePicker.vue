@@ -384,7 +384,7 @@ export default {
     formatDate(date) { return fecha.format(date, this.format) },
 
     createMonth(date){
-      const firstMonday = this.getFirstMonday(date);
+      const firstSunday = this.getFirstSunday(date);
 
       let month = {
         days: []
@@ -392,8 +392,8 @@ export default {
 
       for (let i = 0; i < 42; i++) {
         month.days.push({
-          date: this.addDays(firstMonday, i),
-          belongsToThisMonth: this.addDays(firstMonday, i).getMonth() === date.getMonth(),
+          date: this.addDays(firstSunday, i),
+          belongsToThisMonth: this.addDays(firstSunday, i).getMonth() === date.getMonth(),
           isInRange: false,
         });
       }
