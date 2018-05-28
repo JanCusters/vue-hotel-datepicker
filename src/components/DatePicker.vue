@@ -248,11 +248,21 @@ export default {
 
       this.$emit("check-out-changed", newDate )
     },
-
+    startDate(newDate) {
+      this.init()
+      this.reRender()
+    }
   },
 
   methods: {
     ...Helpers,
+
+    init() {
+      this.months = []
+      this.createMonth(new Date(this.startDate));
+      this.createMonth(this.getNextMonth(new Date(this.startDate)));
+      this.parseDisabledDates()
+    },
 
     handleWindowResize() {
       let screenSizeInEm = window.innerWidth / parseFloat(getComputedStyle(document.querySelector('body'))['font-size']);
@@ -415,9 +425,10 @@ export default {
   },
 
   beforeMount() {
-    this.createMonth(new Date(this.startDate));
-    this.createMonth(this.getNextMonth(new Date(this.startDate)));
-    this.parseDisabledDates();
+    this.init();
+    // this.createMonth(new Date(this.startDate));
+    // this.createMonth(this.getNextMonth(new Date(this.startDate)));
+    // this.parseDisabledDates();
   },
 
   mounted() {
