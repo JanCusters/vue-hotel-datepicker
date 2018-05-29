@@ -320,6 +320,7 @@ export default {
       this.show = true;
       this.parseDisabledDates();
       this.reRender()
+      this.$emit('selectionCleared')
     },
 
     hideDatepicker() { this.isOpen = false; },
